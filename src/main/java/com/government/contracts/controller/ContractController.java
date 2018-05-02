@@ -1,6 +1,7 @@
 package com.government.contracts.controller;
 
 import com.government.contracts.model.Contract;
+import com.government.contracts.repository.ContractRepository;
 import com.government.contracts.service.ContractService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -10,7 +11,10 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-public class ContractController {
+public class ContractController extends AbstractCrudController<Contract, Long> {
+    public ContractController(ContractRepository repository) {
+        super(repository);
+    }
 
     @Autowired
     private ContractService contractService;
