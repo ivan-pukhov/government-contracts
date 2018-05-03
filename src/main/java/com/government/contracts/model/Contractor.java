@@ -10,7 +10,7 @@ public class Contractor implements Identifiable<Long> {
 
     @Id
     @GeneratedValue(generator="contractor_seq")
-    @SequenceGenerator(name="contractor_seq",sequenceName="contractor_seq")
+    @SequenceGenerator(name="contractor_seq", sequenceName="contractor_seq")
     private Long id;
     private String shortName;
     private String fullName;

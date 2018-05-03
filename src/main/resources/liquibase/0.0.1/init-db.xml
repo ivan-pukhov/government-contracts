@@ -29,11 +29,6 @@
             </column>
             <column name="subject" type="varchar(1000)" remarks="Тема государственного контракта"/>
             <column name="contract_code" type="varchar(255)" remarks="Шифр государственного контракта"/>
-            <column name="stage_number" type="varchar(255)" remarks="Номер этапа"/>
-            <column name="stage_name" type="varchar(1000)" remarks="Наименование этапа"/>
-            <column name="stage_start_date" type="timestamp" remarks="Дата начала выполнения работ по этапу"/>
-            <column name="stage_end_date" type="timestamp" remarks="Дата окончания выполнения работ по этапу"/>
-            <column name="stage_price" type="float" remarks="Цена работ"/>
             <column name="contract_price" type="float" remarks="Твёрдая цена государственного контракта"/>
             <column name="okr_flag" type="boolean" remarks="Решение о прекращении ОКР"/>
             <column name="stop_okr_reason" type = "varchar(1000)" remarks="Причина решения опрекращении ОКР"/>
@@ -53,8 +48,6 @@
                 <constraints referencedTableName="contract" referencedColumnNames="id" foreignKeyName="fk_additional_agreement_contract"/>
             </column>
             <column name="contract_price" type="float" remarks="Твёрдая цена контракта"/>
-            <column name="stage_number" type="varchar(255)" remarks="Номер этапа"/>
-            <column name="stage_name" type="varchar(1000)" remarks="Наименование этапа"/>
             <column name="start_date" type="timestamp" remarks="Дата начала работ по этапу контракта"/>
             <column name="end_date" type="timestamp" remarks="Дата окончания работ по этапу контракта"/>
             <column name="price" type="float" remarks="Цена работ"/>
@@ -96,6 +89,7 @@
             <column name="contract_id" type="numeric" remarks="id контракта">
                 <constraints nullable="false" referencedTableName="contract" referencedColumnNames="id" foreignKeyName="fk_stage_contract_id"/>
             </column>
+            <column name="additional_agreement_id" type="numeric" remarks="id дополнительного соглашения"></column>
             <column name="start_date" type="timestamp" remarks="Начало"/>
             <column name="end_date" type="timestamp" remarks="Окончание"/>
             <column name="price" type="float" remarks="Цена работ"/>

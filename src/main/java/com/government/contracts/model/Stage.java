@@ -20,6 +20,7 @@ public class Stage implements Identifiable<Long> {
     private String stageName;
     private Long stageStatusId;
     private Long contractId;
+    private Long additionalAgreementId;
     private LocalDateTime startDate;
     private LocalDateTime endDate;
     private BigDecimal price;
@@ -63,6 +64,14 @@ public class Stage implements Identifiable<Long> {
 
     public void setContractId(Long contractId) {
         this.contractId = contractId;
+    }
+
+    public Long getAdditionalAgreementId() {
+        return additionalAgreementId;
+    }
+
+    public void setAdditionalAgreementId(Long additionalAgreementId) {
+        this.additionalAgreementId = additionalAgreementId;
     }
 
     public LocalDateTime getStartDate() {

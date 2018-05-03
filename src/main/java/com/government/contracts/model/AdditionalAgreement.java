@@ -20,8 +20,6 @@ public class AdditionalAgreement implements Identifiable<Long> {
     private LocalDateTime agreementDate;
     private Long contractId;
     private BigDecimal contractPrice;
-    private String stageNumber;
-    private String stageName;
     private LocalDateTime startDate;
     private LocalDateTime endDate;
     private BigDecimal price;
@@ -73,22 +71,6 @@ public class AdditionalAgreement implements Identifiable<Long> {
 
     public void setContractPrice(BigDecimal contractPrice) {
         this.contractPrice = contractPrice;
-    }
-
-    public String getStageNumber() {
-        return stageNumber;
-    }
-
-    public void setStageNumber(String stageNumber) {
-        this.stageNumber = stageNumber;
-    }
-
-    public String getStageName() {
-        return stageName;
-    }
-
-    public void setStageName(String stageName) {
-        this.stageName = stageName;
     }
 
     public LocalDateTime getStartDate() {

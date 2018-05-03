@@ -5,9 +5,6 @@ import com.government.contracts.model.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-/**
- * Created by vano on 29.4.18.
- */
 public final class TestEntityFactory {
     private static final String SHORT_PREFIX = "short_";
     private static final String FULL_PREFIX = "full_";

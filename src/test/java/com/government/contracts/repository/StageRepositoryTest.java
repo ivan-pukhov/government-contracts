@@ -1,11 +1,9 @@
 package com.government.contracts.repository;
 
-import com.government.contracts.model.Contract;
-import com.government.contracts.model.Contractor;
-import com.government.contracts.model.Stage;
-import com.government.contracts.model.StageStatus;
+import com.government.contracts.model.*;
 import com.government.contracts.utils.TestEntityFactory;
 import org.junit.Assert;
+import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.CrudRepository;
 
@@ -20,6 +18,8 @@ public class StageRepositoryTest extends AbstractRepositoryTest<Stage, Long> {
     private static final String TEST_STAGE_STATUS_NAME = "testStatusName";
     private static final String TEST_STAGE_NAME = "testStageName";
     private static final String TEST_STAGE_NUMBER = "testStageNumber";
+    private static final String TEST_AGREEMENT_NAME = "agreementName";
+    private static final String TEST_AGREEMENT_NUMBER = "agreementNumber";
 
     @Autowired
     private StageRepository stageRepository;
@@ -29,17 +29,23 @@ public class StageRepositoryTest extends AbstractRepositoryTest<Stage, Long> {
     private ContractorRepository contractorRepository;
     @Autowired
     private ContractRepository contractRepository;
+    @Autowired
+    private AdditionalAgreementRepository additionalAgreementRepository;
+
+    @Test
+    public void testSaveStageAdditionalAgreement() {
+        Stage stage = createStage(true);
+        Stage saved = stageRepository.save(stage);
+        Assert.assertNotNull(saved.getId());
+
+        Stage stored = stageRepository.findById(saved.getId()).get();
+        assertEntity(stored);
+        Assert.assertNotNull(stored.getAdditionalAgreementId());
+    }
 
     @Override
     protected Stage createEntity() {
-        Contract contract = createContract();
-
-        StageStatus stageStatus = TestEntityFactory.createStageStatus(TEST_STAGE_STATUS_NAME);
-        StageStatus storedStatus = stageStatusRepository.save(stageStatus);
-
-        Stage stage = TestEntityFactory.createStage(storedStatus.getId(), contract.getId(), TEST_STAGE_NAME, TEST_STAGE_NUMBER);
-
-        return stage;
+        return createStage(false);
     }
 
     @Override
@@ -68,5 +74,21 @@ public class StageRepositoryTest extends AbstractRepositoryTest<Stage, Long> {
         Contract savedContract = contractRepository.save(contract);
         Assert.assertNotNull(savedContract.getId());
         return savedContract;
+    }
+
+    private Stage createStage(boolean isAgreementExists) {
+        Contract contract = createContract();
+
+        StageStatus stageStatus = TestEntityFactory.createStageStatus(TEST_STAGE_STATUS_NAME);
+        StageStatus storedStatus = stageStatusRepository.save(stageStatus);
+
+        Stage stage = TestEntityFactory.createStage(storedStatus.getId(), contract.getId(), TEST_STAGE_NAME, TEST_STAGE_NUMBER);
+        if(isAgreementExists) {
+            AdditionalAgreement additionalAgreement = TestEntityFactory.createAdditionalAgreement(contract.getId(), TEST_AGREEMENT_NUMBER, TEST_AGREEMENT_NAME);
+            AdditionalAgreement storedAgreement = additionalAgreementRepository.save(additionalAgreement);
+            stage.setAdditionalAgreementId(storedAgreement.getId());
+        }
+        return stage;
+
     }
 }

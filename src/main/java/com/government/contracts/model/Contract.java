@@ -17,11 +17,6 @@ public class Contract implements Identifiable<Long> {
     private Long contractorId;
     private String subject;
     private String contractCode;
-    private String stageNumber;
-    private String stageName;
-    private LocalDateTime stageStartDate;
-    private LocalDateTime stageEndDate;
-    private BigDecimal stagePrice;
     private BigDecimal contractPrice;
     private Boolean okrFlag;
     private String stopOkrReason;
@@ -83,46 +78,6 @@ public class Contract implements Identifiable<Long> {
 
     public void setContractCode(String contractCode) {
         this.contractCode = contractCode;
-    }
-
-    public String getStageNumber() {
-        return stageNumber;
-    }
-
-    public void setStageNumber(String stageNumber) {
-        this.stageNumber = stageNumber;
-    }
-
-    public String getStageName() {
-        return stageName;
-    }
-
-    public void setStageName(String stageName) {
-        this.stageName = stageName;
-    }
-
-    public LocalDateTime getStageStartDate() {
-        return stageStartDate;
-    }
-
-    public void setStageStartDate(LocalDateTime stageStartDate) {
-        this.stageStartDate = stageStartDate;
-    }
-
-    public LocalDateTime getStageEndDate() {
-        return stageEndDate;
-    }
-
-    public void setStageEndDate(LocalDateTime stageEndDate) {
-        this.stageEndDate = stageEndDate;
-    }
-
-    public BigDecimal getStagePrice() {
-        return stagePrice;
-    }
-
-    public void setStagePrice(BigDecimal stagePrice) {
-        this.stagePrice = stagePrice;
     }
 
     public BigDecimal getContractPrice() {

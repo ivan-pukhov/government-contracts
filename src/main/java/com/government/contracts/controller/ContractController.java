@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
+@RequestMapping("contract")
 public class ContractController extends AbstractCrudController<Contract, Long> {
     public ContractController(ContractRepository repository) {
         super(repository);
