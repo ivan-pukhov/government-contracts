@@ -1,4 +1,4 @@
-package com.government.contracts.repository;
+package com.government.contracts.repository.contract;
 
 import com.government.contracts.dto.contract.ContractDto;
 import com.government.contracts.dto.contract.ContractFilterParams;

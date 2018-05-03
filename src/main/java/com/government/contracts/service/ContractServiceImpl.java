@@ -3,7 +3,7 @@ package com.government.contracts.service;
 import com.government.contracts.dto.contract.ContractDto;
 import com.government.contracts.dto.contract.ContractFilterParams;
 import com.government.contracts.model.Contract;
-import com.government.contracts.repository.ContractRepository;
+import com.government.contracts.repository.contract.ContractRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

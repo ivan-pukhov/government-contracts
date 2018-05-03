@@ -3,13 +3,11 @@ package com.government.contracts.repository;
 import com.government.contracts.model.AdditionalAgreement;
 import com.government.contracts.model.Contract;
 import com.government.contracts.model.Contractor;
+import com.government.contracts.repository.contract.ContractRepository;
 import com.government.contracts.utils.TestEntityFactory;
 import org.junit.Assert;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.CrudRepository;
-
-import java.math.BigDecimal;
-import java.time.LocalDateTime;
 
 /**
  * Created by vano on 30.4.18.

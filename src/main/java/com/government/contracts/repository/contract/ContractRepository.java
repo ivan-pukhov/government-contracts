@@ -1,6 +1,7 @@
-package com.government.contracts.repository;
+package com.government.contracts.repository.contract;
 
 import com.government.contracts.model.Contract;
+import com.government.contracts.repository.contract.CustomContractRepository;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
 import java.util.List;
