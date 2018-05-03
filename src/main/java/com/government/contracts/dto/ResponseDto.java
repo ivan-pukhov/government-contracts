@@ -1,4 +1,4 @@
-package com.government.contracts.controller.dto;
+package com.government.contracts.dto;
 
 public class ResponseDto {
     private String message;

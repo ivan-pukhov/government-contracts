@@ -1,8 +1,8 @@
 package com.government.contracts.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.government.contracts.controller.dto.ResponseCode;
-import com.government.contracts.controller.dto.ResponseDto;
+import com.government.contracts.dto.ResponseCode;
+import com.government.contracts.dto.ResponseDto;
 import com.government.contracts.model.Identifiable;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.http.HttpStatus;
