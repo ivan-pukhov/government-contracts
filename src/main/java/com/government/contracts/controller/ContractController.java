@@ -13,12 +13,13 @@ import java.util.List;
 @RestController
 @RequestMapping("contract")
 public class ContractController extends AbstractCrudController<Contract, Long> {
-    public ContractController(ContractRepository repository) {
-        super(repository);
-    }
 
-    @Autowired
     private ContractService contractService;
+
+    public ContractController(ContractService contractService) {
+        super(contractService);
+        this.contractService = contractService;
+    }
 
     @RequestMapping("/info")
     public String info() {

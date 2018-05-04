@@ -10,12 +10,13 @@ import org.springframework.data.repository.CrudRepository;
 public class StageStatusRepositoryTest extends AbstractRepositoryTest<StageStatus, Long> {
 
     private static final String STAGE_STATUS_NAME = "stageStatusName";
+    private static final String STAGE_STATUS_CODE = "stageStatusCode";
     @Autowired
     private StageStatusRepository stageStatusRepository;
 
     @Override
     protected StageStatus createEntity() {
-        StageStatus status = TestEntityFactory.createStageStatus(STAGE_STATUS_NAME);
+        StageStatus status = TestEntityFactory.createStageStatus(STAGE_STATUS_NAME, STAGE_STATUS_CODE);
 
         return status;
     }
@@ -28,5 +29,6 @@ public class StageStatusRepositoryTest extends AbstractRepositoryTest<StageStatu
     @Override
     protected void assertEntity(StageStatus entity) {
         Assert.assertEquals(STAGE_STATUS_NAME, entity.getStageName());
+        Assert.assertEquals(STAGE_STATUS_CODE, entity.getStageCode());
     }
 }

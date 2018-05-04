@@ -16,6 +16,7 @@ public class ActRepositoryTest extends AbstractRepositoryTest<Act, Long> {
     private static final String TEST_CONTRACT_NAME = "contractName";
     private static final String TEST_CONTRACT_CODE = "contractCode";
     private static final String TEST_STAGE_STATUS_NAME = "testStatusName";
+    private static final String TEST_STAGE_STATUS_CODE = "testStatusCode";
     private static final String TEST_STAGE_NAME = "testStageName";
     private static final String TEST_STAGE_NUMBER = "testStageNumber";
     private static final String TEST_INN = "testInn";
@@ -36,7 +37,7 @@ public class ActRepositoryTest extends AbstractRepositoryTest<Act, Long> {
     protected Act createEntity() {
         Contract contract = createContract();
 
-        StageStatus stageStatus = TestEntityFactory.createStageStatus(TEST_STAGE_STATUS_NAME);
+        StageStatus stageStatus = TestEntityFactory.createStageStatus(TEST_STAGE_STATUS_NAME, TEST_STAGE_STATUS_CODE);
         StageStatus storedStatus = stageStatusRepository.save(stageStatus);
 
         Stage stage = TestEntityFactory.createStage(storedStatus.getId(), contract.getId(), TEST_STAGE_NAME, TEST_STAGE_NUMBER);

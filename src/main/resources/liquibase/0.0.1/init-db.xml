@@ -68,17 +68,17 @@
         <createSequence sequenceName="stage_name_seq" minValue="1000"/>
         <insert tableName="stage_status">
             <column name="id">1</column>
-            <column name="satge_code">CURRENT</column>
+            <column name="stage_code">CURRENT</column>
             <column name="stage_name">Текущий</column>
         </insert>
         <insert tableName="stage_status">
             <column name="id">2</column>
-            <column name="status_code">DELETED</column>
+            <column name="stage_code">DELETED</column>
             <column name="stage_name">Исключённый</column>
         </insert>
         <insert tableName="stage_status">
             <column name="id">3</column>
-            <column name="status_code">CLOSED</column>
+            <column name="stage_code">CLOSED</column>
             <column name="stage_name">Закрытый</column>
         </insert>
         <createSequence sequenceName="stage_status_seq" minValue="1000"/>

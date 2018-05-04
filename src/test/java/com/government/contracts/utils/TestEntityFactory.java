@@ -49,9 +49,10 @@ public final class TestEntityFactory {
         return additionalAgreement;
     }
 
-    public static final StageStatus createStageStatus(String statusName) {
+    public static final StageStatus createStageStatus(String statusName, String statusCode) {
         StageStatus stageStatus = new StageStatus();
         stageStatus.setStageName(statusName);
+        stageStatus.setStageCode(statusCode);
         return stageStatus;
     }
 
