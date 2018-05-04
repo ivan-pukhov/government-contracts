@@ -62,7 +62,7 @@ public class AdditionalAgreementRepositoryTest extends AbstractRepositoryTest<Ad
         Contractor savedContractor = contractorRepository.save(contractor);
         Assert.assertNotNull(savedContractor.getId());
         Contract contract = TestEntityFactory.createContract(TEST_CONTRACT_NAME, TEST_CONTRACT_NUMBER, TEST_CONTRACT_CODE);
-        contract.setContractorId(savedContractor.getId());
+        contract.setContractor(savedContractor);
 
         Contract savedContract = contractRepository.save(contract);
         Assert.assertNotNull(savedContract.getId());

@@ -4,17 +4,20 @@ import com.government.contracts.dto.contract.ContractDto;
 import com.government.contracts.dto.contract.ContractFilterParams;
 import com.government.contracts.model.Contract;
 import com.government.contracts.repository.contract.ContractRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class ContractServiceImpl implements ContractService {
+public class ContractServiceImpl extends CrudServiceImpl<Contract, Long> implements ContractService {
 
-    @Autowired
     private ContractRepository contractRepository;
+
+    public ContractServiceImpl(ContractRepository contractRepository) {
+        super(contractRepository);
+        this.contractRepository = contractRepository;
+    }
 
     @Override
     public List<Contract> findByName(String name) {

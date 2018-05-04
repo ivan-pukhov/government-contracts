@@ -58,6 +58,9 @@
             <column name="id" type="numeric" remarks="ID статуса этапа">
                 <constraints primaryKey="true" nullable="false" primaryKeyName="pk_stage_status"/>
             </column>
+            <column name="stage_code" type="varchar(100)" remarks="Код статуса">
+                <constraints nullable="false"/>
+            </column>
             <column name="stage_name" type="varchar(100)" remarks="Наименование этапа">
                 <constraints nullable="false"/>
             </column>
@@ -65,14 +68,17 @@
         <createSequence sequenceName="stage_name_seq" minValue="1000"/>
         <insert tableName="stage_status">
             <column name="id">1</column>
+            <column name="satge_code">CURRENT</column>
             <column name="stage_name">Текущий</column>
         </insert>
         <insert tableName="stage_status">
             <column name="id">2</column>
-            <column name="stage_name">Исключительный</column>
+            <column name="status_code">DELETED</column>
+            <column name="stage_name">Исключённый</column>
         </insert>
         <insert tableName="stage_status">
             <column name="id">3</column>
+            <column name="status_code">CLOSED</column>
             <column name="stage_name">Закрытый</column>
         </insert>
         <createSequence sequenceName="stage_status_seq" minValue="1000"/>

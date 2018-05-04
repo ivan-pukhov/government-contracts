@@ -28,7 +28,8 @@ public class ContractDto {
         this.contractPrice = contract.getContractPrice();
         this.contractStartDate = contract.getContractStartDate();
         this.contractEndDate = contract.getContractEndDate();
-        this.contractorId = contract.getContractorId();
+        this.contractorId = contract.getContractor().getId();
+        this.contractorName = contract.getContractor().getFullName();
     }
 
     public Long getId() {

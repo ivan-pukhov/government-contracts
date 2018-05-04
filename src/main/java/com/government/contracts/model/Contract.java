@@ -14,7 +14,8 @@ public class Contract implements Identifiable<Long> {
     private String name;
     private String contractNumber;
     private LocalDateTime contractDate;
-    private Long contractorId;
+    @ManyToOne
+    private Contractor contractor;
     private String subject;
     private String contractCode;
     private BigDecimal contractPrice;
@@ -56,12 +57,12 @@ public class Contract implements Identifiable<Long> {
         this.contractDate = contractDate;
     }
 
-    public Long getContractorId() {
-        return contractorId;
+    public Contractor getContractor() {
+        return contractor;
     }
 
-    public void setContractorId(Long contractorId) {
-        this.contractorId = contractorId;
+    public void setContractor(Contractor contractor) {
+        this.contractor = contractor;
     }
 
     public String getSubject() {

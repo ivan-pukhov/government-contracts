@@ -12,6 +12,7 @@ public class StageStatus implements Identifiable<Long> {
     @GeneratedValue(generator="stage_status_seq")
     @SequenceGenerator(name="stage_status_seq",sequenceName="stage_status_seq")
     private Long id;
+    private String stageCode;
     private String stageName;
 
     @Override
@@ -21,6 +22,14 @@ public class StageStatus implements Identifiable<Long> {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getStageCode() {
+        return stageCode;
+    }
+
+    public void setStageCode(String stageCode) {
+        this.stageCode = stageCode;
     }
 
     public String getStageName() {

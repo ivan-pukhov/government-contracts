@@ -28,9 +28,9 @@ public class ContractRepositoryTest  extends AbstractRepositoryTest<Contract, Lo
     @Override
     protected Contract createEntity() {
         Contract contract = TestEntityFactory.createContract(CONTRACT_NAME, CONTRACT_NUMBER, CONTRACT_CODE);
-        Contractor contractor = TestEntityFactory.createContractor(INN,CONTRACTOR_NAME);
+        Contractor contractor = TestEntityFactory.createContractor(INN, CONTRACTOR_NAME);
         Contractor savedContractor = contractorRepository.save(contractor);
-        contract.setContractorId(savedContractor.getId());
+        contract.setContractor(savedContractor);
         return contract;
     }
 
@@ -44,6 +44,6 @@ public class ContractRepositoryTest  extends AbstractRepositoryTest<Contract, Lo
         Assert.assertEquals(CONTRACT_CODE, entity.getContractCode());
         Assert.assertEquals(CONTRACT_NAME,entity.getName());
         Assert.assertEquals(CONTRACT_NUMBER, entity.getContractNumber());
-        Assert.assertNotNull(entity.getContractorId());
+        Assert.assertNotNull(entity.getContractor());
     }
 }
