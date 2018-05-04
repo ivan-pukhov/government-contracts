@@ -56,11 +56,11 @@ public final class TestEntityFactory {
         return stageStatus;
     }
 
-    public static final Stage createStage(Long statusId,Long contractId, String name, String stageNumber) {
+    public static final Stage createStage(StageStatus status, Contract contract, String name, String stageNumber) {
         Stage stage = new Stage();
         stage.setStageName(name);
-        stage.setStageStatusId(statusId);
-        stage.setContractId(contractId);
+        stage.setStageStatus(status);
+        stage.setContract(contract);
         stage.setStartDate(LocalDateTime.now());
         stage.setEndDate(LocalDateTime.now().plusMonths(DATE_STEP));
         stage.setStageNumber(stageNumber);

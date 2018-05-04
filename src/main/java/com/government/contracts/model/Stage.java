@@ -2,10 +2,7 @@ package com.government.contracts.model;
 
 import com.government.contracts.model.Identifiable;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
+import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
@@ -18,9 +15,12 @@ public class Stage implements Identifiable<Long> {
     private Long id;
     private String stageNumber;
     private String stageName;
-    private Long stageStatusId;
-    private Long contractId;
-    private Long additionalAgreementId;
+    @ManyToOne
+    private StageStatus stageStatus;
+    @ManyToOne
+    private Contract contract;
+    @ManyToOne
+    private AdditionalAgreement additionalAgreement;
     private LocalDateTime startDate;
     private LocalDateTime endDate;
     private BigDecimal price;
@@ -50,28 +50,28 @@ public class Stage implements Identifiable<Long> {
         this.stageName = stageName;
     }
 
-    public Long getStageStatusId() {
-        return stageStatusId;
+    public StageStatus getStageStatus() {
+        return stageStatus;
     }
 
-    public void setStageStatusId(Long stageStatusId) {
-        this.stageStatusId = stageStatusId;
+    public void setStageStatus(StageStatus stageStatus) {
+        this.stageStatus = stageStatus;
     }
 
-    public Long getContractId() {
-        return contractId;
+    public Contract getContract() {
+        return contract;
     }
 
-    public void setContractId(Long contractId) {
-        this.contractId = contractId;
+    public void setContract(Contract contract) {
+        this.contract = contract;
     }
 
-    public Long getAdditionalAgreementId() {
-        return additionalAgreementId;
+    public AdditionalAgreement getAdditionalAgreement() {
+        return additionalAgreement;
     }
 
-    public void setAdditionalAgreementId(Long additionalAgreementId) {
-        this.additionalAgreementId = additionalAgreementId;
+    public void setAdditionalAgreement(AdditionalAgreement additionalAgreement) {
+        this.additionalAgreement = additionalAgreement;
     }
 
     public LocalDateTime getStartDate() {

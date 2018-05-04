@@ -21,11 +21,6 @@ public class ContractController extends AbstractCrudController<Contract, Long> {
         this.contractService = contractService;
     }
 
-    @RequestMapping("/info")
-    public String info() {
-        return "Contract controller info";
-    }
-
     @RequestMapping("/findByName/{name}")
     public List<Contract> findByName(@PathVariable("name") String name) {
         return contractService.findByName(name);

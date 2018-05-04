@@ -40,7 +40,7 @@ public class ActRepositoryTest extends AbstractRepositoryTest<Act, Long> {
         StageStatus stageStatus = TestEntityFactory.createStageStatus(TEST_STAGE_STATUS_NAME, TEST_STAGE_STATUS_CODE);
         StageStatus storedStatus = stageStatusRepository.save(stageStatus);
 
-        Stage stage = TestEntityFactory.createStage(storedStatus.getId(), contract.getId(), TEST_STAGE_NAME, TEST_STAGE_NUMBER);
+        Stage stage = TestEntityFactory.createStage(storedStatus, contract, TEST_STAGE_NAME, TEST_STAGE_NUMBER);
         Stage storedStage = stageRepository.save(stage);
 
         Act act = TestEntityFactory.createAct(storedStage.getId(), TEST_ACT_TYPE, TEST_STAGE_NUMBER);
