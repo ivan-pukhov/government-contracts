@@ -3,9 +3,7 @@ package com.government.contracts.controller;
 import com.government.contracts.dto.contract.ContractDto;
 import com.government.contracts.dto.contract.ContractFilterParams;
 import com.government.contracts.model.Contract;
-import com.government.contracts.repository.contract.ContractRepository;
 import com.government.contracts.service.ContractService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
