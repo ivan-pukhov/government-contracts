@@ -34,6 +34,7 @@
             <column name="stop_okr_reason" type = "varchar(1000)" remarks="Причина решения опрекращении ОКР"/>
             <column name="contract_start_date" type="timestamp" remarks="Дата начала ГК"/>
             <column name="contract_end_date" type="timestamp" remarks="Дата окончания ГК"/>
+            <column name="version" type="numeric" remarks="Версия контракта"/>
         </createTable>
         <createSequence sequenceName="contract_seq" minValue="1000"/>
 
@@ -59,7 +60,7 @@
                 <constraints primaryKey="true" nullable="false" primaryKeyName="pk_stage_status"/>
             </column>
             <column name="stage_code" type="varchar(100)" remarks="Код статуса">
-                <constraints nullable="false"/>
+                <constraints nullable="false" unique="true"/>
             </column>
             <column name="stage_name" type="varchar(100)" remarks="Наименование этапа">
                 <constraints nullable="false"/>
@@ -148,6 +149,20 @@
             <column name="stage_price" type="float" remarks="Цена работ этапа"/>
         </createTable>
         <createSequence sequenceName="act_seq" minValue="1000"/>
+
+        <createTable tableName="stage_parent_info" remarks="Информация с по предкам этапа. Заполняется при разделении или объединении этапов">
+            <column name = "id" type = "numeric">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_stage_parent"/>
+            </column>
+            <column name="stage_id" type="numeric" remarks="id этапа">
+                <constraints referencedTableName="stage" referencedColumnNames="id" foreignKeyName="fk_stage_parent_info_stage_id" nullable="false"/>
+            </column>
+            <column name="parent_stage_id" type="numeric" remarks="id родительского этапа">
+                <constraints nullable="false" referencedTableName="stage" referencedColumnNames="id" foreignKeyName="fk_stage_parent_info_parent_stage_id"/>
+            </column>
+            <column name="description" type="varchar(255)" remarks="Описание"/>
+        </createTable>
+        <createSequence sequenceName="stage_parent_info_seq" minValue="1000"/>
 
     </changeSet>
 

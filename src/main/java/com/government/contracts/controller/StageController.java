@@ -1,24 +1,39 @@
 package com.government.contracts.controller;
 
+import com.government.contracts.dto.ResponseDto;
+import com.government.contracts.dto.stage.CombineStageDto;
+import com.government.contracts.dto.stage.DivideStageDto;
 import com.government.contracts.model.Stage;
-import com.government.contracts.repository.StageRepository;
 import com.government.contracts.service.StageService;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
-import javax.websocket.server.PathParam;
 import java.util.List;
 
 @RestController
 @RequestMapping("stage")
 public class StageController extends AbstractCrudController<Stage, Long>{
+    @Autowired
+    private StageService stageService;
+
     public StageController(StageService stageService) {
         super(stageService);
     }
 
     @RequestMapping("find/contract/{contractId}")
-    public List<Stage> findContractStage(@PathVariable Long contractId) {
-        return null;
+    public ResponseEntity<ResponseDto> findContractStages(@PathVariable Long contractId) {
+        return createCorrectResponse(stageService.findContractStages(contractId));
+    }
+
+    @RequestMapping(value = "divide", method = RequestMethod.POST)
+    public ResponseEntity<ResponseDto> divideStages(@RequestBody DivideStageDto divideStageDto) {
+        return createCorrectResponse(stageService.divideStage(divideStageDto));
+    }
+
+
+    @RequestMapping(value = "combine", method = RequestMethod.POST)
+    public ResponseEntity<ResponseDto> combineStages(@RequestBody CombineStageDto combineStageDto) {
+        return createCorrectResponse(stageService.combineStage(combineStageDto));
     }
 }

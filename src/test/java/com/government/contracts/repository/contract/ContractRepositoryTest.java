@@ -1,7 +1,9 @@
-package com.government.contracts.repository;
+package com.government.contracts.repository.contract;
 
 import com.government.contracts.model.Contract;
 import com.government.contracts.model.Contractor;
+import com.government.contracts.repository.AbstractRepositoryTest;
+import com.government.contracts.repository.ContractorRepository;
 import com.government.contracts.repository.contract.ContractRepository;
 import com.government.contracts.utils.TestEntityFactory;
 import org.junit.Assert;

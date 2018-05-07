@@ -1,9 +1,11 @@
 package com.government.contracts.controller;
 
+import com.government.contracts.dto.ResponseDto;
 import com.government.contracts.dto.contract.ContractDto;
 import com.government.contracts.dto.contract.ContractFilterParams;
 import com.government.contracts.model.Contract;
 import com.government.contracts.service.ContractService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -25,8 +27,8 @@ public class ContractController extends AbstractCrudController<Contract, Long> {
     }
 
     @RequestMapping(value = "/find", method = RequestMethod.POST)
-    public List<ContractDto> findContracts(@RequestBody ContractFilterParams params) {
-        return contractService.findContracts(params);
+    public ResponseEntity<ResponseDto> findContracts(@RequestBody ContractFilterParams params) {
+        return createCorrectResponse(contractService.findContracts(params));
     }
 
 }

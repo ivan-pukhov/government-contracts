@@ -93,4 +93,12 @@ public abstract class AbstractCrudController<T extends Identifiable, ID extends 
 
         return ResponseEntity.ok(dto);
     }
+
+    protected ResponseEntity<ResponseDto> createCorrectResponse(Object dto) {
+        ResponseDto responseDto = new ResponseDto();
+        responseDto.setDto(dto);
+        responseDto.setCode(ResponseCode.OK);
+        responseDto.setMessage("OK");
+        return ResponseEntity.ok(responseDto);
+    }
 }

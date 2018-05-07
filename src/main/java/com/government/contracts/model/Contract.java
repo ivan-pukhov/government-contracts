@@ -24,6 +24,7 @@ public class Contract implements Identifiable<Long> {
 
     private LocalDateTime contractStartDate;
     private LocalDateTime contractEndDate;
+    private Long version;
 
     public Long getId() {
         return id;
@@ -119,5 +120,13 @@ public class Contract implements Identifiable<Long> {
 
     public void setContractEndDate(LocalDateTime contractEndDate) {
         this.contractEndDate = contractEndDate;
+    }
+
+    public Long getVersion() {
+        return version;
+    }
+
+    public void setVersion(Long version) {
+        this.version = version;
     }
 }
