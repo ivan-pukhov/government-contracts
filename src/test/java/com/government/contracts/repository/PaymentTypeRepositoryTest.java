@@ -10,13 +10,13 @@ import org.springframework.data.repository.CrudRepository;
 public class PaymentTypeRepositoryTest extends AbstractRepositoryTest<PaymentType, Long> {
 
     private static final String PAYMENT_TYPE_NAME = "testPaymentType";
-
+    private static final String PAYMENT_TYPE_CODE = "testPaymentType";
     @Autowired
     private PaymentTypeRepository paymentTypeRepository;
 
     @Override
     protected PaymentType createEntity() {
-        return TestEntityFactory.createPaymentType(PAYMENT_TYPE_NAME);
+        return TestEntityFactory.createPaymentType(PAYMENT_TYPE_NAME, PAYMENT_TYPE_CODE);
     }
 
     @Override
@@ -27,5 +27,6 @@ public class PaymentTypeRepositoryTest extends AbstractRepositoryTest<PaymentTyp
     @Override
     protected void assertEntity(PaymentType entity) {
         Assert.assertEquals(PAYMENT_TYPE_NAME, entity.getName());
+        Assert.assertEquals(PAYMENT_TYPE_CODE, entity.getCode());
     }
 }

@@ -12,9 +12,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.Optional;
 
-/**
- * Created by vano on 29.4.18.
- */
 @RunWith(SpringRunner.class)
 @DataJpaTest
 @AutoConfigureTestDatabase(replace= AutoConfigureTestDatabase.Replace.NONE)

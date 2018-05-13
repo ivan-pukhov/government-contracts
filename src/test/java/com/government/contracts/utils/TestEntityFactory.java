@@ -1,6 +1,7 @@
 package com.government.contracts.utils;
 
 import com.government.contracts.entity.*;
+import com.government.contracts.enums.PaymentTypeEnum;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -68,25 +69,26 @@ public final class TestEntityFactory {
         return stage;
     }
 
-    public static final PaymentType createPaymentType(String name) {
+    public static final PaymentType createPaymentType(String name, String code) {
         PaymentType paymentType = new PaymentType();
         paymentType.setName(name);
+        paymentType.setCode(code);
         return paymentType;
     }
 
-    public static final Payment createPayment(Long paymentTypeId, String stageNumber) {
+    public static final Payment createPayment(Long paymentTypeId, Stage stage) {
         Payment payment = new Payment();
-        payment.setStageNumber(stageNumber);
+        payment.setStage(stage);
         payment.setPaymentTypeId(paymentTypeId);
         payment.setPaymentDate(LocalDateTime.now());
         payment.setPaymentSum(TEST_PRICE);
         return payment;
     }
 
-    public static final Act createAct(Long stageId, String actType, String stageNumber) {
+    public static final Act createAct(Payment payment, String actType, String stageNumber) {
         Act act = new Act();
         act.setActType(actType);
-        act.setStageId(stageId);
+        act.setPayment(payment);
         act.setStageNumber(stageNumber);
         act.setActDate(LocalDateTime.now());
         act.setStagePrice(TEST_PRICE);

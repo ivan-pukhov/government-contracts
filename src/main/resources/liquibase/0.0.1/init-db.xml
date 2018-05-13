@@ -107,18 +107,25 @@
             <column name="id" type="numeric">
                 <constraints primaryKey="true" nullable="false" primaryKeyName="pk_payment_type"/>
             </column>
+            <column name="code" type="varchar(100)" remarks="Код типа оплаты">
+                <constraints nullable="false" unique="true"/>
+            </column>
             <column name="name" type="varchar(100)"/>
+
         </createTable>
         <insert tableName="payment_type">
             <column name="id">1</column>
+            <column name="code">PREPAYMENT</column>
             <column name="name">Аванс</column>
         </insert>
         <insert tableName="payment_type">
             <column name="id">2</column>
+            <column name="code">COMPLETED_JOB</column>
             <column name="name">За выполненные работы</column>
         </insert>
         <insert tableName="payment_type">
             <column name="id">3</column>
+            <column name="code">REFUND</column>
             <column name="name">Возврат</column>
         </insert>
         <createSequence sequenceName="payment_type_seq" minValue="1000"/>
@@ -130,7 +137,9 @@
             <column name="payment_type_id" type="numeric" remarks="id типа оплаты">
                 <constraints nullable="false" referencedTableName="payment_type" referencedColumnNames="id" foreignKeyName="fk_payment_payment_type"/>
             </column>
-            <column name="stage_number" type="varchar(255)" remarks="Номер этапа"/>
+            <column name="stage_id" type="numeric">
+                <constraints nullable="false" referencedTableName="stage" referencedColumnNames="id" foreignKeyName="fk_act_stage_id"/>
+            </column>
             <column name="payment_date" type="timestamp" remarks="Дата оплаты"/>
             <column name="payment_sum" type="float" remarks="Сумма оплаты"/>
         </createTable>
@@ -140,8 +149,8 @@
             <column name="id" type="numeric">
                 <constraints primaryKey="true" primaryKeyName="pk_act" nullable="false"/>
             </column>
-            <column name="stage_id" type="numeric">
-                <constraints nullable="false" referencedTableName="stage" referencedColumnNames="id" foreignKeyName="fk_act_stage_id"/>
+            <column name="payment_id" type="numeric">
+                <constraints nullable="false" referencedTableName="payment" referencedColumnNames="id" foreignKeyName="fk_act_payment_id"/>
             </column>
             <column name="act_type" type="varchar(100)" remarks="Тип акта"/>
             <column name="act_date" type="timestamp" remarks="Дата акта"/>
@@ -150,7 +159,7 @@
         </createTable>
         <createSequence sequenceName="act_seq" minValue="1000"/>
 
-        <createTable tableName="stage_parent_info" remarks="Информация с по предкам этапа. Заполняется при разделении или объединении этапов">
+        <createTable tableName="stage_parent_info" remarks="Информация по предкам этапа. Заполняется при разделении или объединении этапов">
             <column name = "id" type = "numeric">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="pk_stage_parent"/>
             </column>

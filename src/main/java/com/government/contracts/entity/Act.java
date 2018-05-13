@@ -1,10 +1,7 @@
 package com.government.contracts.entity;
 
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
+import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
@@ -15,7 +12,8 @@ public class Act implements Identifiable<Long> {
     @GeneratedValue(generator="act_seq")
     @SequenceGenerator(name="act_seq",sequenceName="act_seq")
     private Long id;
-    private Long stageId;
+    @OneToOne
+    private Payment payment;
     private String actType;
     private LocalDateTime actDate;
     private String stageNumber;
@@ -30,12 +28,12 @@ public class Act implements Identifiable<Long> {
         this.id = id;
     }
 
-    public Long getStageId() {
-        return stageId;
+    public Payment getPayment() {
+        return payment;
     }
 
-    public void setStageId(Long stageId) {
-        this.stageId = stageId;
+    public void setPayment(Payment payment) {
+        this.payment = payment;
     }
 
     public String getActType() {
