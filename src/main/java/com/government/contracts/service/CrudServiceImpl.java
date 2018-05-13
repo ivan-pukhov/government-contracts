@@ -9,19 +9,19 @@ public abstract class CrudServiceImpl<T extends Identifiable, ID> implements Cru
 
     @Override
     public T save(T domain) {
-        return getRepository().save(domain);
+        return getCrudRepository().save(domain);
     }
 
     @Override
     public void deleteById(ID id) {
-        getRepository().deleteById(id);
+        getCrudRepository().deleteById(id);
     }
 
     @Override
     public T update(ID id, T domain) {
-        if (getRepository().existsById(id)) {
+        if (getCrudRepository().existsById(id)) {
             domain.setId(id);
-            T savedDomain = getRepository().save(domain);
+            T savedDomain = getCrudRepository().save(domain);
             return savedDomain;
         } else {
             String msg = "Entity with id=[" + id + "] is not found";
@@ -31,12 +31,12 @@ public abstract class CrudServiceImpl<T extends Identifiable, ID> implements Cru
 
     @Override
     public Optional<T> findById(ID id) {
-        return getRepository().findById(id);
+        return getCrudRepository().findById(id);
     }
 
     @Override
     public Iterable<T> findAll() {
-        return getRepository().findAll();
+        return getCrudRepository().findAll();
     }
 
 }

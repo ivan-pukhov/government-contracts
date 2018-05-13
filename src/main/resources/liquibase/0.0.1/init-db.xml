@@ -53,7 +53,7 @@
             <column name="end_date" type="timestamp" remarks="Дата окончания работ по этапу контракта"/>
             <column name="price" type="float" remarks="Цена работ"/>
         </createTable>
-        <createSequence sequenceName="additional_agreement_seq"/>
+        <createSequence sequenceName="additional_agreement_seq" minValue="1000"/>
 
         <createTable tableName="stage_status"  remarks="Статус этапа">
             <column name="id" type="numeric" remarks="ID статуса этапа">

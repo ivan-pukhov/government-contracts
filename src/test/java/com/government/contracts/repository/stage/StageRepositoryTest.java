@@ -65,10 +65,10 @@ public class StageRepositoryTest extends AbstractRepositoryTest<Stage, Long> {
 
         Stage stored = stageRepository.findById(saved.getId()).get();
         assertEntity(stored);
-        Assert.assertNotNull(stored.getAdditionalAgreement());
+        Assert.assertNotNull(stored.getAdditionalAgreementId());
     }
 
-    @Test
+   @Test
     public void testFindContractStagesByContractId() {
         Contract contract1 = createContract(TEST_CONTRACT_NAMES[1], TEST_CONTRACT_NUMBERS[1], TEST_CONTRACT_CODES[1]);
 
@@ -215,7 +215,7 @@ public class StageRepositoryTest extends AbstractRepositoryTest<Stage, Long> {
         if(isAgreementExists) {
             AdditionalAgreement additionalAgreement = TestEntityFactory.createAdditionalAgreement(contract.getId(), TEST_AGREEMENT_NUMBER, TEST_AGREEMENT_NAME);
             AdditionalAgreement storedAgreement = additionalAgreementRepository.save(additionalAgreement);
-            stage.setAdditionalAgreement(storedAgreement);
+            stage.setAdditionalAgreementId(storedAgreement.getId());
         }
         return stage;
 

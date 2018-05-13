@@ -13,7 +13,7 @@ public class ContractorServiceImpl extends CrudServiceImpl<Contractor, Long> imp
     private ContractorRepository contractorRepository;
 
     @Override
-    public CrudRepository<Contractor, Long> getRepository() {
+    public CrudRepository<Contractor, Long> getCrudRepository() {
         return contractorRepository;
     }
 }

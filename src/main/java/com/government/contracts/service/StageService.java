@@ -8,6 +8,8 @@ public interface StageService extends CrudService<Stage, Long> {
 
     Iterable<Stage> findContractStages(Long contractId);
 
+    Iterable<Stage> findAdditionalAgreementStages(Long additionalAgreementId);
+
     Stage combineStage(CombineStageDto combineStageDto);
 
     Iterable<Stage> divideStage(DivideStageDto divideStageDto);

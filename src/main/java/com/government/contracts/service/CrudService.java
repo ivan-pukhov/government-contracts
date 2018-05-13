@@ -12,11 +12,9 @@ public interface CrudService<T extends Identifiable, ID> {
 
     T update(ID id, T domain);
 
-
     Optional<T> findById(ID id);
-
 
     Iterable<T>  findAll();
 
-    CrudRepository<T, ID> getRepository();
+    CrudRepository<T, ID> getCrudRepository();
 }

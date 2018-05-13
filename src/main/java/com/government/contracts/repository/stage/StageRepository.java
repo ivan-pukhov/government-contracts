@@ -16,4 +16,9 @@ public interface StageRepository extends PagingAndSortingRepository<Stage, Long>
         return findAll(Specification.where(StageSpecifications.stageByContractId(contractId))
                 .and(StageSpecifications.stageByStatusId(statusId)));
     }
+
+    default Iterable<Stage> findAdditionalAgreementStages(Long additionalAgreementId, Long statusId) {
+        return findAll(Specification.where(StageSpecifications.stageByAdditionalAgreementId(additionalAgreementId))
+                .and(StageSpecifications.stageByStatusId(statusId)));
+    }
 }

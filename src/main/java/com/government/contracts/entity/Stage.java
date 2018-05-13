@@ -17,8 +17,10 @@ public class Stage implements Identifiable<Long> {
     private StageStatus stageStatus;
     @ManyToOne
     private Contract contract;
-    @ManyToOne
-    private AdditionalAgreement additionalAgreement;
+    //@ManyToOne(fetch = FetchType.LAZY)
+    //@JoinColumn(name="additional_agreement_id", referencedColumnName = "id")
+    //private AdditionalAgreement additionalAgreement;
+    private Long additionalAgreementId;
     private LocalDateTime startDate;
     private LocalDateTime endDate;
     private BigDecimal price;
@@ -64,12 +66,12 @@ public class Stage implements Identifiable<Long> {
         this.contract = contract;
     }
 
-    public AdditionalAgreement getAdditionalAgreement() {
-        return additionalAgreement;
+    public Long getAdditionalAgreementId() {
+        return additionalAgreementId;
     }
 
-    public void setAdditionalAgreement(AdditionalAgreement additionalAgreement) {
-        this.additionalAgreement = additionalAgreement;
+    public void setAdditionalAgreementId(Long additionalAgreementId) {
+        this.additionalAgreementId = additionalAgreementId;
     }
 
     public LocalDateTime getStartDate() {

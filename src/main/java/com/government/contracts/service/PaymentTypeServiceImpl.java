@@ -13,7 +13,7 @@ public class PaymentTypeServiceImpl extends CrudServiceImpl<PaymentType, Long> i
     private PaymentTypeRepository paymentTypeRepository;
 
     @Override
-    public CrudRepository<PaymentType, Long> getRepository() {
+    public CrudRepository<PaymentType, Long> getCrudRepository() {
         return paymentTypeRepository;
     }
 }

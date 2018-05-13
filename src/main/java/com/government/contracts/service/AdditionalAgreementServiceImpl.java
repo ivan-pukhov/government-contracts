@@ -30,7 +30,7 @@ public class AdditionalAgreementServiceImpl extends CrudServiceImpl<AdditionalAg
     }
 
     @Override
-    public CrudRepository<AdditionalAgreement, Long> getRepository() {
+    public CrudRepository<AdditionalAgreement, Long> getCrudRepository() {
         return additionalAgreementRepository;
     }
 }

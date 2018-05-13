@@ -13,7 +13,7 @@ public class StageStatusServiceImpl extends CrudServiceImpl<StageStatus, Long> i
     private StageStatusRepository stageStatusRepository;
 
     @Override
-    public CrudRepository<StageStatus, Long> getRepository() {
+    public CrudRepository<StageStatus, Long> getCrudRepository() {
         return stageStatusRepository;
     }
 }

@@ -45,7 +45,7 @@ public class ContractServiceImpl extends CrudServiceImpl<Contract, Long> impleme
     }
 
     @Override
-    public CrudRepository<Contract, Long> getRepository() {
+    public CrudRepository<Contract, Long> getCrudRepository() {
         return contractRepository;
     }
 }

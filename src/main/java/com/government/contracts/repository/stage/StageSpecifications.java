@@ -18,7 +18,7 @@ public final class StageSpecifications {
     }
 
     public static Specification<Stage> stageByAdditionalAgreementId(Long additionalAgreementId) {
-        return (root, query, criteriaBuilder) -> criteriaBuilder.equal(root.get("additionalAgreement").get("id"),
+        return (root, query, criteriaBuilder) -> criteriaBuilder.equal(root.get("additionalAgreementId"),
                 additionalAgreementId);
     }
 }

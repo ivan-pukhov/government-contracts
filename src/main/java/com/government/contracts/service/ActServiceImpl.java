@@ -13,7 +13,7 @@ public class ActServiceImpl extends CrudServiceImpl<Act, Long> implements ActSer
     private ActRepository actRepository;
 
     @Override
-    public CrudRepository<Act, Long> getRepository() {
+    public CrudRepository<Act, Long> getCrudRepository() {
         return actRepository;
     }
 }

@@ -24,6 +24,11 @@ public class StageController extends AbstractCrudController<Stage, Long>{
         return createCorrectResponse(stageService.findContractStages(contractId));
     }
 
+    @RequestMapping("find/agreement/{additionalAgreementId}")
+    public ResponseEntity<ResponseDto> findAdditionalAgreementStages(@PathVariable Long additionalAgreementId) {
+        return createCorrectResponse(stageService.findAdditionalAgreementStages(additionalAgreementId));
+    }
+
     @RequestMapping(value = "divide", method = RequestMethod.POST)
     public ResponseEntity<ResponseDto> divideStages(@RequestBody DivideStageDto divideStageDto) {
         return createCorrectResponse(stageService.divideStage(divideStageDto));
