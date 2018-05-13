@@ -1,6 +1,6 @@
 package com.government.contracts.repository.stage;
 
-import com.government.contracts.model.Stage;
+import com.government.contracts.entity.Stage;
 import org.springframework.data.jpa.domain.Specification;
 
 public final class StageSpecifications {

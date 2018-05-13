@@ -1,7 +1,6 @@
 package com.government.contracts.controller;
 
-import com.government.contracts.model.PaymentType;
-import com.government.contracts.repository.PaymentTypeRepository;
+import com.government.contracts.entity.PaymentType;
 import com.government.contracts.service.PaymentTypeService;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

@@ -2,9 +2,8 @@ package com.government.contracts.repository.stage;
 
 
 import com.government.contracts.enums.StageStatusEnum;
-import com.government.contracts.model.StageStatus;
+import com.government.contracts.entity.StageStatus;
 import com.government.contracts.repository.AbstractRepositoryTest;
-import com.government.contracts.repository.stage.StageStatusRepository;
 import com.government.contracts.utils.TestEntityFactory;
 import org.junit.Assert;
 import org.junit.Test;

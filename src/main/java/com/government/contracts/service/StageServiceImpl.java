@@ -3,13 +3,14 @@ package com.government.contracts.service;
 import com.government.contracts.dto.stage.CombineStageDto;
 import com.government.contracts.dto.stage.DivideStageDto;
 import com.government.contracts.enums.StageStatusEnum;
-import com.government.contracts.model.Stage;
-import com.government.contracts.model.StageParentInfo;
-import com.government.contracts.model.StageStatus;
+import com.government.contracts.entity.Stage;
+import com.government.contracts.entity.StageParentInfo;
+import com.government.contracts.entity.StageStatus;
 import com.government.contracts.repository.stage.StageParentInfoRepository;
 import com.government.contracts.repository.stage.StageRepository;
 import com.government.contracts.repository.stage.StageStatusRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -28,10 +29,6 @@ public class StageServiceImpl extends CrudServiceImpl<Stage, Long> implements St
     private StageRepository stageRepository;
     @Autowired
     private StageParentInfoRepository stageParentInfoRepository;
-
-    public StageServiceImpl(StageRepository stageRepository) {
-        super(stageRepository);
-    }
 
     @Override
     public Stage save(Stage domain) {
@@ -94,6 +91,11 @@ public class StageServiceImpl extends CrudServiceImpl<Stage, Long> implements St
                 throw new IllegalArgumentException("Wrong parent stage status id: [" + divideStageDto.getParentStageId() + "]");
             }
         }
+    }
+
+    @Override
+    public CrudRepository<Stage, Long> getRepository() {
+        return stageRepository;
     }
 
     private Iterable<StageParentInfo> saveCombineStageParentInfo(Stage newStage, Iterable<Stage> parentStages) {

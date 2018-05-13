@@ -2,24 +2,23 @@ package com.government.contracts.service;
 
 import com.government.contracts.dto.contract.ContractDto;
 import com.government.contracts.dto.contract.ContractFilterParams;
-import com.government.contracts.model.AdditionalAgreement;
-import com.government.contracts.model.Contract;
+import com.government.contracts.entity.AdditionalAgreement;
+import com.government.contracts.entity.Contract;
 import com.government.contracts.repository.contract.ContractRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 @Service
 public class ContractServiceImpl extends CrudServiceImpl<Contract, Long> implements ContractService {
 
+    @Autowired
     private ContractRepository contractRepository;
-
-    public ContractServiceImpl(ContractRepository contractRepository) {
-        super(contractRepository);
-        this.contractRepository = contractRepository;
-    }
 
     @Override
     public List<Contract> findByName(String name) {
@@ -28,8 +27,9 @@ public class ContractServiceImpl extends CrudServiceImpl<Contract, Long> impleme
 
     @Override
     public List<ContractDto> findContracts(ContractFilterParams params) {
-        List<Contract> contracts = contractRepository.findContracts(params);
-        return contracts.stream().map(it -> new ContractDto(it)).collect(Collectors.toList());
+        Iterable<Contract> contracts = contractRepository.findContracts(params);
+        return StreamSupport.stream(contracts.spliterator(), false)
+                .map(it -> new ContractDto(it)).collect(Collectors.toList());
     }
 
     @Override
@@ -42,5 +42,10 @@ public class ContractServiceImpl extends CrudServiceImpl<Contract, Long> impleme
             contract.setContractPrice(contractPrice);
             save(contract);
         }
+    }
+
+    @Override
+    public CrudRepository<Contract, Long> getRepository() {
+        return contractRepository;
     }
 }

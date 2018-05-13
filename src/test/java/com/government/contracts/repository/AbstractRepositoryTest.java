@@ -1,6 +1,6 @@
 package com.government.contracts.repository;
 
-import com.government.contracts.model.Identifiable;
+import com.government.contracts.entity.Identifiable;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;

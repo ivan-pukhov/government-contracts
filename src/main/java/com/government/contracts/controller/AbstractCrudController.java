@@ -3,9 +3,8 @@ package com.government.contracts.controller;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.government.contracts.dto.ResponseCode;
 import com.government.contracts.dto.ResponseDto;
-import com.government.contracts.model.Identifiable;
+import com.government.contracts.entity.Identifiable;
 import com.government.contracts.service.CrudService;
-import org.springframework.data.repository.CrudRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -32,7 +31,7 @@ public abstract class AbstractCrudController<T extends Identifiable, ID extends 
         ResponseDto dto = new ResponseDto();
         dto.setCode(ResponseCode.OK);
         dto.setMessage("saved");
-        dto.setDto(entity);
+        dto.setObject(entity);
 
         return ResponseEntity.ok(dto);
     }
@@ -54,7 +53,7 @@ public abstract class AbstractCrudController<T extends Identifiable, ID extends 
         ResponseDto dto = new ResponseDto();
         try {
             T savedDomain = service.update(id, domain);
-            dto.setDto(savedDomain);
+            dto.setObject(savedDomain);
             dto.setCode(ResponseCode.OK);
             dto.setMessage("updated");
         } catch (IllegalArgumentException e) {
@@ -74,7 +73,7 @@ public abstract class AbstractCrudController<T extends Identifiable, ID extends 
 
         if (optional.isPresent()) {
             dto.setCode(ResponseCode.OK);
-            dto.setDto(optional.get());
+            dto.setObject(optional.get());
         } else {
             dto.setCode(ResponseCode.FAIL);
         }
@@ -89,14 +88,14 @@ public abstract class AbstractCrudController<T extends Identifiable, ID extends 
         ResponseDto dto = new ResponseDto();
         dto.setMessage("getAll");
         dto.setCode(ResponseCode.OK);
-        dto.setDto(all);
+        dto.setObject(all);
 
         return ResponseEntity.ok(dto);
     }
 
     protected ResponseEntity<ResponseDto> createCorrectResponse(Object dto) {
         ResponseDto responseDto = new ResponseDto();
-        responseDto.setDto(dto);
+        responseDto.setObject(dto);
         responseDto.setCode(ResponseCode.OK);
         responseDto.setMessage("OK");
         return ResponseEntity.ok(responseDto);

@@ -1,6 +1,6 @@
 package com.government.contracts.repository;
 
-import com.government.contracts.model.AdditionalAgreement;
+import com.government.contracts.entity.AdditionalAgreement;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
 

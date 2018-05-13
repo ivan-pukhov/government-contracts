@@ -1,6 +1,6 @@
 package com.government.contracts.controller;
 
-import com.government.contracts.model.AdditionalAgreement;
+import com.government.contracts.entity.AdditionalAgreement;
 import com.government.contracts.service.AdditionalAgreementService;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

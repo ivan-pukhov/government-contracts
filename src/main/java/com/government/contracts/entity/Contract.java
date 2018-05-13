@@ -1,4 +1,4 @@
-package com.government.contracts.model;
+package com.government.contracts.entity;
 
 import javax.persistence.*;
 import java.math.BigDecimal;

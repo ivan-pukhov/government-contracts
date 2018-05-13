@@ -1,6 +1,6 @@
 package com.government.contracts.repository;
 
-import com.government.contracts.model.Payment;
+import com.government.contracts.entity.Payment;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
 

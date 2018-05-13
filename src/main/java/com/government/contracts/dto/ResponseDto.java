@@ -5,7 +5,7 @@ public class ResponseDto {
 
     private ResponseCode code;
 
-    private Object dto;
+    private Object object;
 
     public String getMessage() {
         return message;
@@ -23,11 +23,11 @@ public class ResponseDto {
         this.code = code;
     }
 
-    public Object getDto() {
-        return dto;
+    public Object getObject() {
+        return object;
     }
 
-    public void setDto(Object dto) {
-        this.dto = dto;
+    public void setObject(Object object) {
+        this.object = object;
     }
 }

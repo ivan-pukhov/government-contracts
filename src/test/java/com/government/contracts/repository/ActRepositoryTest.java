@@ -1,6 +1,6 @@
 package com.government.contracts.repository;
 
-import com.government.contracts.model.*;
+import com.government.contracts.entity.*;
 import com.government.contracts.repository.contract.ContractRepository;
 import com.government.contracts.repository.stage.StageRepository;
 import com.government.contracts.repository.stage.StageStatusRepository;

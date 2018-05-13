@@ -1,7 +1,7 @@
 package com.government.contracts.repository;
 
-import com.government.contracts.model.Payment;
-import com.government.contracts.model.PaymentType;
+import com.government.contracts.entity.Payment;
+import com.government.contracts.entity.PaymentType;
 import com.government.contracts.utils.TestEntityFactory;
 import org.junit.Assert;
 import org.springframework.beans.factory.annotation.Autowired;

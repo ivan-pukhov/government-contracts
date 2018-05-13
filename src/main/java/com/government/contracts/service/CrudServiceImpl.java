@@ -1,33 +1,27 @@
 package com.government.contracts.service;
 
-import com.government.contracts.model.Identifiable;
-import org.springframework.data.repository.CrudRepository;
+import com.government.contracts.entity.Identifiable;
 
 import java.util.Optional;
 
 public abstract class CrudServiceImpl<T extends Identifiable, ID> implements CrudService<T, ID> {
 
-    private CrudRepository<T, ID> repository;
-
-    public CrudServiceImpl(CrudRepository<T, ID> repository) {
-        this.repository = repository;
-    }
 
     @Override
     public T save(T domain) {
-        return repository.save(domain);
+        return getRepository().save(domain);
     }
 
     @Override
     public void deleteById(ID id) {
-        repository.deleteById(id);
+        getRepository().deleteById(id);
     }
 
     @Override
     public T update(ID id, T domain) {
-        if (repository.existsById(id)) {
+        if (getRepository().existsById(id)) {
             domain.setId(id);
-            T savedDomain = repository.save(domain);
+            T savedDomain = getRepository().save(domain);
             return savedDomain;
         } else {
             String msg = "Entity with id=[" + id + "] is not found";
@@ -37,16 +31,12 @@ public abstract class CrudServiceImpl<T extends Identifiable, ID> implements Cru
 
     @Override
     public Optional<T> findById(ID id) {
-        return repository.findById(id);
+        return getRepository().findById(id);
     }
 
     @Override
     public Iterable<T> findAll() {
-        return repository.findAll();
+        return getRepository().findAll();
     }
 
-    @Override
-    public CrudRepository<T, ID> getRepository() {
-        return repository;
-    }
 }

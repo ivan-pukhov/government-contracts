@@ -1,6 +1,6 @@
 package com.government.contracts.utils;
 
-import com.government.contracts.model.*;
+import com.government.contracts.entity.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;

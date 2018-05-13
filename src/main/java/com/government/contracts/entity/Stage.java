@@ -1,6 +1,4 @@
-package com.government.contracts.model;
-
-import com.government.contracts.model.Identifiable;
+package com.government.contracts.entity;
 
 import javax.persistence.*;
 import java.math.BigDecimal;

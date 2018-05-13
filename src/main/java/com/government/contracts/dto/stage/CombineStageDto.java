@@ -1,6 +1,6 @@
 package com.government.contracts.dto.stage;
 
-import com.government.contracts.model.Stage;
+import com.government.contracts.entity.Stage;
 
 import java.util.List;
 

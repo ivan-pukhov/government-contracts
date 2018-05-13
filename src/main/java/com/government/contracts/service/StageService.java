@@ -2,9 +2,7 @@ package com.government.contracts.service;
 
 import com.government.contracts.dto.stage.CombineStageDto;
 import com.government.contracts.dto.stage.DivideStageDto;
-import com.government.contracts.model.Stage;
-
-import java.util.List;
+import com.government.contracts.entity.Stage;
 
 public interface StageService extends CrudService<Stage, Long> {
 

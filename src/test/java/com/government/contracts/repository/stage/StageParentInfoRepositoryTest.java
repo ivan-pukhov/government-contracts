@@ -1,7 +1,7 @@
 package com.government.contracts.repository.stage;
 
 import com.government.contracts.enums.StageStatusEnum;
-import com.government.contracts.model.*;
+import com.government.contracts.entity.*;
 import com.government.contracts.repository.AbstractRepositoryTest;
 import com.government.contracts.repository.ContractorRepository;
 import com.government.contracts.repository.contract.ContractRepository;

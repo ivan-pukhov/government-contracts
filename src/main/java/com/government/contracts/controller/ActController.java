@@ -1,7 +1,6 @@
 package com.government.contracts.controller;
 
-import com.government.contracts.model.Act;
-import com.government.contracts.repository.ActRepository;
+import com.government.contracts.entity.Act;
 import com.government.contracts.service.ActService;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

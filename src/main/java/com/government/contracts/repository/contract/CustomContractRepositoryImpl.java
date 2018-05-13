@@ -1,7 +1,7 @@
 package com.government.contracts.repository.contract;
 
 import com.government.contracts.dto.contract.ContractFilterParams;
-import com.government.contracts.model.Contract;
+import com.government.contracts.entity.Contract;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -19,7 +19,7 @@ public class CustomContractRepositoryImpl implements CustomContractRepository {
     private EntityManager entityManager;
 
     @Override
-    public List<Contract> findContracts(ContractFilterParams params) {
+    public List<Contract> findContracts1(ContractFilterParams params) {
         CriteriaBuilder cb = entityManager.getCriteriaBuilder();
         CriteriaQuery<Contract> criteriaQuery = cb.createQuery(Contract.class);
         Root<Contract> from = criteriaQuery.from(Contract.class);

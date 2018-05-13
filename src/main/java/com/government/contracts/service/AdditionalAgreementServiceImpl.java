@@ -1,18 +1,19 @@
 package com.government.contracts.service;
 
-import com.government.contracts.model.AdditionalAgreement;
+import com.government.contracts.entity.AdditionalAgreement;
 import com.government.contracts.repository.AdditionalAgreementRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
 
 @Service
 public class AdditionalAgreementServiceImpl extends CrudServiceImpl<AdditionalAgreement, Long> implements AdditionalAgreementService {
 
+    @Autowired
     private ContractService contractService;
 
-    public AdditionalAgreementServiceImpl(AdditionalAgreementRepository repository, ContractService contractService) {
-        super(repository);
-        this.contractService = contractService;
-    }
+    @Autowired
+    private AdditionalAgreementRepository additionalAgreementRepository;
 
     @Override
     public AdditionalAgreement save(AdditionalAgreement agreement) {
@@ -26,5 +27,10 @@ public class AdditionalAgreementServiceImpl extends CrudServiceImpl<AdditionalAg
         super.update(id, agreement);
         contractService.updateContract(agreement);
         return super.update(id, agreement);
+    }
+
+    @Override
+    public CrudRepository<AdditionalAgreement, Long> getRepository() {
+        return additionalAgreementRepository;
     }
 }

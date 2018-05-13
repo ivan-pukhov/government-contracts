@@ -3,13 +3,11 @@ package com.government.contracts.controller;
 import com.government.contracts.dto.ResponseDto;
 import com.government.contracts.dto.stage.CombineStageDto;
 import com.government.contracts.dto.stage.DivideStageDto;
-import com.government.contracts.model.Stage;
+import com.government.contracts.entity.Stage;
 import com.government.contracts.service.StageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("stage")
