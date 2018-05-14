@@ -1,12 +1,13 @@
 package com.government.contracts.service;
 
-import com.government.contracts.entity.Act;
-import com.government.contracts.entity.Payment;
-import com.government.contracts.entity.PaymentType;
+import com.government.contracts.entity.*;
 import com.government.contracts.enums.PaymentTypeEnum;
+import com.government.contracts.enums.StageStatusEnum;
 import com.government.contracts.repository.ActRepository;
 import com.government.contracts.repository.PaymentRepository;
 import com.government.contracts.repository.PaymentTypeRepository;
+import com.government.contracts.repository.stage.StageRepository;
+import com.government.contracts.repository.stage.StageStatusRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
@@ -25,18 +26,33 @@ public class PaymentServiceImpl extends CrudServiceImpl<Payment, Long> implement
     private PaymentTypeRepository paymentTypeRepository;
     @Autowired
     private ActRepository actRepository;
+    @Autowired
+    private StageRepository stageRepository;
+    @Autowired
+    private StageStatusRepository stageStatusRepository;
 
     @Override
     public Payment save(Payment domain) {
         Long paymentTypeId = domain.getPaymentTypeId();
         Optional<PaymentType> paymentTypeOptional = paymentTypeRepository.findById(paymentTypeId);
         if(paymentTypeOptional.isPresent()) {
-            Payment storedPayment = super.save(domain);
-            PaymentType paymentType = paymentTypeOptional.get();
-            if (PaymentTypeEnum.COMPLETED_JOB.name().equals(paymentType.getCode())) {
-                createAct(storedPayment);
+            Long stageId = domain.getStage().getId();
+            Optional<Stage> stageOpt = stageRepository.findById(stageId);
+            if (stageOpt.isPresent()) {
+                Payment storedPayment = super.save(domain);
+                PaymentType paymentType = paymentTypeOptional.get();
+                if (PaymentTypeEnum.COMPLETED_JOB.name().equals(paymentType.getCode())) {
+                    createAct(storedPayment);
+
+                    Stage stage = stageOpt.get();
+                    StageStatus closed = stageStatusRepository.findByStageCode(StageStatusEnum.CLOSED.name());
+                    stage.setStageStatus(closed);
+                    stageRepository.save(stage);
+                }
+                return storedPayment;
             }
-            return storedPayment;
+            throw new IllegalArgumentException("Wrong stage id: [" + stageId + "]");
+
         }
         throw new IllegalArgumentException("Wrong payment type id : [" + paymentTypeId + "]");
 
