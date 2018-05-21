@@ -4,6 +4,7 @@ import com.government.contracts.dto.ResponseDto;
 import com.government.contracts.dto.stage.CombineStageDto;
 import com.government.contracts.dto.stage.DivideStageDto;
 import com.government.contracts.entity.Stage;
+import com.government.contracts.service.CrudService;
 import com.government.contracts.service.StageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -14,10 +15,6 @@ import org.springframework.web.bind.annotation.*;
 public class StageController extends AbstractCrudController<Stage, Long>{
     @Autowired
     private StageService stageService;
-
-    public StageController(StageService stageService) {
-        super(stageService);
-    }
 
     @RequestMapping("find/contract/{contractId}")
     public ResponseEntity<ResponseDto> findContractStages(@PathVariable Long contractId) {
@@ -38,5 +35,10 @@ public class StageController extends AbstractCrudController<Stage, Long>{
     @RequestMapping(value = "combine", method = RequestMethod.POST)
     public ResponseEntity<ResponseDto> combineStages(@RequestBody CombineStageDto combineStageDto) {
         return createCorrectResponse(stageService.combineStage(combineStageDto));
+    }
+
+    @Override
+    protected CrudService<Stage, Long> getCrudService() {
+        return stageService;
     }
 }

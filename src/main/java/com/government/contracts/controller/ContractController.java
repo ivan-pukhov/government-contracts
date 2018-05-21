@@ -4,6 +4,8 @@ import com.government.contracts.dto.ResponseDto;
 import com.government.contracts.dto.contract.ContractFilterParams;
 import com.government.contracts.entity.Contract;
 import com.government.contracts.service.ContractService;
+import com.government.contracts.service.CrudService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,12 +15,8 @@ import java.util.List;
 @RequestMapping("contract")
 public class ContractController extends AbstractCrudController<Contract, Long> {
 
+    @Autowired
     private ContractService contractService;
-
-    public ContractController(ContractService contractService) {
-        super(contractService);
-        this.contractService = contractService;
-    }
 
     @RequestMapping("/findByName/{name}")
     public List<Contract> findByName(@PathVariable("name") String name) {
@@ -30,4 +28,8 @@ public class ContractController extends AbstractCrudController<Contract, Long> {
         return createCorrectResponse(contractService.findContracts(params));
     }
 
+    @Override
+    protected CrudService<Contract, Long> getCrudService() {
+        return contractService;
+    }
 }

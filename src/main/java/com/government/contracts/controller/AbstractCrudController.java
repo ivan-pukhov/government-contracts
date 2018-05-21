@@ -13,17 +13,10 @@ import java.io.Serializable;
 import java.util.Optional;
 
 public abstract class AbstractCrudController<T extends Identifiable, ID extends Serializable> {
-    private CrudService<T, ID> service;
-    private ObjectMapper mapper;
-
-    public AbstractCrudController(CrudService service) {
-        this.service = service;
-        this.mapper = new ObjectMapper();
-    }
 
     @RequestMapping(method = RequestMethod.POST, value = "")
     public ResponseEntity<ResponseDto> save(@RequestBody T domain) {
-        T entity = service.save(domain);
+        T entity = getCrudService().save(domain);
 
         ResponseDto dto = new ResponseDto();
         dto.setCode(ResponseCode.OK);
@@ -35,7 +28,7 @@ public abstract class AbstractCrudController<T extends Identifiable, ID extends 
 
     @RequestMapping(method = RequestMethod.DELETE, value = "/{id}")
     public ResponseEntity<ResponseDto> delete(@PathVariable("id") ID id) {
-        service.deleteById(id);
+        getCrudService().deleteById(id);
 
         ResponseDto dto = new ResponseDto();
 
@@ -49,7 +42,7 @@ public abstract class AbstractCrudController<T extends Identifiable, ID extends 
     public ResponseEntity<ResponseDto> update(@PathVariable("id") ID id, @RequestBody T domain) {
         ResponseDto dto = new ResponseDto();
         try {
-            T savedDomain = service.update(id, domain);
+            T savedDomain = getCrudService().update(id, domain);
             dto.setObject(savedDomain);
             dto.setCode(ResponseCode.OK);
             dto.setMessage("updated");
@@ -63,7 +56,7 @@ public abstract class AbstractCrudController<T extends Identifiable, ID extends 
 
     @RequestMapping(method = RequestMethod.GET, value = "/{id}")
     public ResponseEntity<ResponseDto> getById(@PathVariable("id") ID id) {
-        Optional<T> optional = service.findById(id);
+        Optional<T> optional = getCrudService().findById(id);
 
         ResponseDto dto = new ResponseDto();
         dto.setMessage("getById");
@@ -80,7 +73,7 @@ public abstract class AbstractCrudController<T extends Identifiable, ID extends 
 
     @RequestMapping(method = RequestMethod.GET, value = "")
     public ResponseEntity<ResponseDto> getAll() {
-        Iterable<T> all = service.findAll();
+        Iterable<T> all = getCrudService().findAll();
 
         ResponseDto dto = new ResponseDto();
         dto.setMessage("getAll");
@@ -97,4 +90,6 @@ public abstract class AbstractCrudController<T extends Identifiable, ID extends 
         responseDto.setMessage("OK");
         return ResponseEntity.ok(responseDto);
     }
+
+    protected abstract CrudService<T, ID> getCrudService();
 }
