@@ -7,10 +7,7 @@ import com.government.contracts.entity.Identifiable;
 import com.government.contracts.service.CrudService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.Serializable;
 import java.util.Optional;
@@ -74,11 +71,11 @@ public abstract class AbstractCrudController<T extends Identifiable, ID extends 
         if (optional.isPresent()) {
             dto.setCode(ResponseCode.OK);
             dto.setObject(optional.get());
+            return ResponseEntity.ok(dto);
         } else {
             dto.setCode(ResponseCode.FAIL);
+            return new ResponseEntity<>(dto, HttpStatus.NOT_FOUND);
         }
-
-        return new ResponseEntity<>(dto, HttpStatus.NOT_FOUND);
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "")
