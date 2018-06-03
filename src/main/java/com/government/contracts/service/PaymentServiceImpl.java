@@ -1,10 +1,11 @@
 package com.government.contracts.service;
 
+import com.government.contracts.dto.PaymentDto;
 import com.government.contracts.entity.*;
 import com.government.contracts.enums.PaymentTypeEnum;
 import com.government.contracts.enums.StageStatusEnum;
 import com.government.contracts.repository.ActRepository;
-import com.government.contracts.repository.PaymentRepository;
+import com.government.contracts.repository.payment.PaymentRepository;
 import com.government.contracts.repository.PaymentTypeRepository;
 import com.government.contracts.repository.stage.StageRepository;
 import com.government.contracts.repository.stage.StageStatusRepository;
@@ -13,6 +14,7 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -56,6 +58,11 @@ public class PaymentServiceImpl extends CrudServiceImpl<Payment, Long> implement
         }
         throw new IllegalArgumentException("Wrong payment type id : [" + paymentTypeId + "]");
 
+    }
+
+    @Override
+    public List<PaymentDto> findPaymentsByContractId(Long contractId) {
+        return null;
     }
 
     @Override

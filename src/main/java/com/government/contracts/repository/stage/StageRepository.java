@@ -12,9 +12,13 @@ public interface StageRepository extends PagingAndSortingRepository<Stage, Long>
 
     Iterable<Stage> findByIdIn(List<Long> ids);
 
-    default Iterable<Stage> findContractStages(Long contractId, Long statusId) {
+    default Iterable<Stage> findContractStagesByStatusId(Long contractId, Long statusId) {
         return findAll(Specification.where(StageSpecifications.stageByContractId(contractId))
                 .and(StageSpecifications.stageByStatusId(statusId)));
+    }
+
+    default Iterable<Stage> findContractStages(Long contractId) {
+        return findAll(Specification.where(StageSpecifications.stageByContractId(contractId)));
     }
 
     default Iterable<Stage> findAdditionalAgreementStages(Long additionalAgreementId, Long statusId) {

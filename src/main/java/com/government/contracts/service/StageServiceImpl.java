@@ -38,9 +38,14 @@ public class StageServiceImpl extends CrudServiceImpl<Stage, Long> implements St
     }
 
     @Override
-    public Iterable<Stage> findContractStages(Long contractId) {
+    public Iterable<Stage> findCurrentContractStages(Long contractId) {
         StageStatus stageStatus = stageStatusRepository.findByStageCode(StageStatusEnum.CURRENT.name());
-        return stageRepository.findContractStages(contractId, stageStatus.getId());
+        return stageRepository.findContractStagesByStatusId(contractId, stageStatus.getId());
+    }
+
+    @Override
+    public Iterable<Stage> findContractStages(Long contractId) {
+        return stageRepository.findContractStages(contractId);
     }
 
     @Override

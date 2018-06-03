@@ -3,6 +3,7 @@ package com.government.contracts.repository;
 import com.government.contracts.entity.*;
 import com.government.contracts.enums.PaymentTypeEnum;
 import com.government.contracts.repository.contract.ContractRepository;
+import com.government.contracts.repository.payment.PaymentRepository;
 import com.government.contracts.repository.stage.StageRepository;
 import com.government.contracts.repository.stage.StageStatusRepository;
 import com.government.contracts.utils.TestEntityFactory;

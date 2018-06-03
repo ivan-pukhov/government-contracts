@@ -137,7 +137,7 @@ public class StageRepositoryTest extends AbstractRepositoryTest<Stage, Long> {
         });
 
 
-        Iterable<Stage> currentStages1 = stageRepository.findContractStages(contract1.getId(), currentStatus.getId());
+        Iterable<Stage> currentStages1 = stageRepository.findContractStagesByStatusId(contract1.getId(), currentStatus.getId());
         Assert.assertTrue(currentStages1.iterator().hasNext());
         currentStages1.forEach(item -> {
             Assert.assertEquals(contract1.getId(), item.getContract().getId());
@@ -172,6 +172,39 @@ public class StageRepositoryTest extends AbstractRepositoryTest<Stage, Long> {
         }
     }
 
+    @Test
+    public void testFindByContractId() {
+        // Add stages for the first contract
+        Contract contract1 = createContract(TEST_CONTRACT_NAMES[1], TEST_CONTRACT_NUMBERS[1], TEST_CONTRACT_CODES[1]);
+        StageStatus currentStatus = stageStatusRepository.findByStageCode(StageStatusEnum.CURRENT.name());
+        StageStatus closedStatus = stageStatusRepository.findByStageCode(StageStatusEnum.CLOSED.name());
+
+        Stage currentStage = TestEntityFactory.createStage(currentStatus, contract1, TEST_STAGE_NAMES[1], TEST_STAGE_NUMBERS[1]);
+        Stage savedCurrentStage = stageRepository.save(currentStage);
+        Assert.assertNotNull(savedCurrentStage.getId());
+
+        Stage closedStage = TestEntityFactory.createStage(closedStatus, contract1, TEST_STAGE_NAMES[2], TEST_STAGE_NUMBERS[2]);
+        Stage savedClosedStage = stageRepository.save(closedStage);
+        Assert.assertNotNull(savedClosedStage.getId());
+
+        // Add current stage for the second contract
+        Contract contract2 = createContract(TEST_CONTRACT_NAMES[2], TEST_CONTRACT_NUMBERS[2], TEST_CONTRACT_CODES[2]);
+        Stage currentStage2 = TestEntityFactory.createStage(currentStatus, contract2, TEST_STAGE_NAMES[2], TEST_STAGE_NUMBERS[2]);
+        Stage savedCurrentStage2 = stageRepository.save(currentStage2);
+        Assert.assertNotNull(savedCurrentStage2.getId());
+
+        Iterable<Stage> contract1Stages = stageRepository.findContractStages(contract1.getId());
+        Assert.assertTrue(contract1Stages.iterator().hasNext());
+        for(Stage stage : contract1Stages) {
+            Assert.assertEquals(contract1.getId(), stage.getContract().getId());
+        }
+
+        Iterable<Stage> contract2Stages = stageRepository.findContractStages(contract2.getId());
+        Assert.assertTrue(contract2Stages.iterator().hasNext());
+        for(Stage stage : contract2Stages) {
+            Assert.assertEquals(contract2.getId(), stage.getContract().getId());
+        }
+    }
     @Override
     protected Stage createEntity() {
         return createDefaultStage(false);

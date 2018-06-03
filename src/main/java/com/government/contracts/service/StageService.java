@@ -6,7 +6,9 @@ import com.government.contracts.entity.Stage;
 
 public interface StageService extends CrudService<Stage, Long> {
 
+    Iterable<Stage> findCurrentContractStages(Long contractId);
     Iterable<Stage> findContractStages(Long contractId);
+
 
     Iterable<Stage> findAdditionalAgreementStages(Long additionalAgreementId);
 
