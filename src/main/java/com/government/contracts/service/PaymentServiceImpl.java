@@ -16,6 +16,9 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.StreamSupport;
+
+import static java.util.stream.Collectors.toList;
 
 @Service
 public class PaymentServiceImpl extends CrudServiceImpl<Payment, Long> implements PaymentService {
@@ -35,7 +38,7 @@ public class PaymentServiceImpl extends CrudServiceImpl<Payment, Long> implement
 
     @Override
     public Payment save(Payment domain) {
-        Long paymentTypeId = domain.getPaymentTypeId();
+        Long paymentTypeId = domain.getPaymentType().getId();
         Optional<PaymentType> paymentTypeOptional = paymentTypeRepository.findById(paymentTypeId);
         if(paymentTypeOptional.isPresent()) {
             Long stageId = domain.getStage().getId();
@@ -57,12 +60,22 @@ public class PaymentServiceImpl extends CrudServiceImpl<Payment, Long> implement
 
         }
         throw new IllegalArgumentException("Wrong payment type id : [" + paymentTypeId + "]");
-
     }
 
     @Override
     public List<PaymentDto> findPaymentsByContractId(Long contractId) {
-        return null;
+        Iterable<Payment> payments = paymentRepository.findByContractId(contractId);
+        return StreamSupport.stream(payments.spliterator(), false).map(payment -> {
+            PaymentDto dto = new PaymentDto();
+            dto.setId(payment.getId());
+            dto.setContractId(payment.getStage().getContract().getId());
+            dto.setStageId(payment.getStage().getId());
+            dto.setPaymentDate(payment.getPaymentDate());
+            dto.setPaymentSum(payment.getPaymentSum());
+            dto.setPaymentTypeId(payment.getPaymentType().getId());
+            dto.setPaymentType(payment.getPaymentType().getCode());
+            return dto;
+        }).collect(toList());
     }
 
     @Override

@@ -10,7 +10,8 @@ public class Payment implements Identifiable<Long> {
     @GeneratedValue(generator="payment_seq")
     @SequenceGenerator(name="payment_seq",sequenceName="payment_seq")
     private Long id;
-    private Long paymentTypeId;
+    @ManyToOne
+    private PaymentType paymentType;
     @ManyToOne
     private Stage stage;
     private LocalDateTime paymentDate;
@@ -25,12 +26,12 @@ public class Payment implements Identifiable<Long> {
         this.id = id;
     }
 
-    public Long getPaymentTypeId() {
-        return paymentTypeId;
+    public PaymentType getPaymentType() {
+        return paymentType;
     }
 
-    public void setPaymentTypeId(Long paymentTypeId) {
-        this.paymentTypeId = paymentTypeId;
+    public void setPaymentType(PaymentType paymentType) {
+        this.paymentType = paymentType;
     }
 
     public Stage getStage() {

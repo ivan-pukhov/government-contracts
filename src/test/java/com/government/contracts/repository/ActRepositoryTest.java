@@ -52,7 +52,7 @@ public class ActRepositoryTest extends AbstractRepositoryTest<Act, Long> {
         Stage storedStage = stageRepository.save(stage);
 
         PaymentType completedType = paymentTypeRepository.findByCode(PaymentTypeEnum.COMPLETED_JOB.name());
-        Payment payment = TestEntityFactory.createPayment(completedType.getId(), storedStage);
+        Payment payment = TestEntityFactory.createPayment(completedType, storedStage);
         Payment storedPayment = paymentRepository.save(payment);
 
         Act act = TestEntityFactory.createAct(storedPayment, TEST_ACT_TYPE, TEST_STAGE_NUMBER);

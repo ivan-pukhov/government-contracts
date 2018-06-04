@@ -76,10 +76,10 @@ public final class TestEntityFactory {
         return paymentType;
     }
 
-    public static final Payment createPayment(Long paymentTypeId, Stage stage) {
+    public static final Payment createPayment(PaymentType paymentType, Stage stage) {
         Payment payment = new Payment();
         payment.setStage(stage);
-        payment.setPaymentTypeId(paymentTypeId);
+        payment.setPaymentType(paymentType);
         payment.setPaymentDate(LocalDateTime.now());
         payment.setPaymentSum(TEST_PRICE);
         return payment;
