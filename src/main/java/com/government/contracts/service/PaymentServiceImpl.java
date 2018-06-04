@@ -42,6 +42,7 @@ public class PaymentServiceImpl extends CrudServiceImpl<Payment, Long> implement
         Optional<PaymentType> paymentTypeOptional = paymentTypeRepository.findById(paymentTypeId);
         if(paymentTypeOptional.isPresent()) {
             Long stageId = domain.getStage().getId();
+            domain.setPaymentType(paymentTypeOptional.get());
             Optional<Stage> stageOpt = stageRepository.findById(stageId);
             if (stageOpt.isPresent()) {
                 Payment storedPayment = super.save(domain);
