@@ -73,8 +73,7 @@ public class PaymentServiceImpl extends CrudServiceImpl<Payment, Long> implement
             dto.setStageId(payment.getStage().getId());
             dto.setPaymentDate(payment.getPaymentDate());
             dto.setPaymentSum(payment.getPaymentSum());
-            dto.setPaymentTypeId(payment.getPaymentType().getId());
-            dto.setPaymentType(payment.getPaymentType().getCode());
+            dto.setPaymentType(payment.getPaymentType());
             return dto;
         }).collect(toList());
     }

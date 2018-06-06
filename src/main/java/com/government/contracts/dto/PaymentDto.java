@@ -1,13 +1,14 @@
 package com.government.contracts.dto;
 
 
+import com.government.contracts.entity.PaymentType;
+
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 public class PaymentDto {
     private Long id;
-    private Long paymentTypeId;
-    private String paymentType;
+    private PaymentType paymentType;
     private Long stageId;
     private Long contractId;
     private LocalDateTime paymentDate;
@@ -21,19 +22,11 @@ public class PaymentDto {
         this.id = id;
     }
 
-    public Long getPaymentTypeId() {
-        return paymentTypeId;
-    }
-
-    public void setPaymentTypeId(Long paymentTypeId) {
-        this.paymentTypeId = paymentTypeId;
-    }
-
-    public String getPaymentType() {
+    public PaymentType getPaymentType() {
         return paymentType;
     }
 
-    public void setPaymentType(String paymentType) {
+    public void setPaymentType(PaymentType paymentType) {
         this.paymentType = paymentType;
     }
 
